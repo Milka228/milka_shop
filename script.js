@@ -1,4 +1,11 @@
 window.onload = function(){
+    function showDate(){
+        var str = '';
+        var now = new Date();
+            str = now.toLocaleTimeString();
+            document.querySelector('.date').innerHTML = str;
+        }
+        setInterval(showDate,1000);
     $.getJSON("https://spreadsheets.google.com/feeds/list/1fL44ixVzWeCdb0nYPo8jrTQ2k5Ei0WwRPj9Wn1fMq4Q/od6/public/values?alt=json",
         function (data) {
             console.log(data);
@@ -16,9 +23,13 @@ window.onload = function(){
              out += `<h3 class="title">${data[i]['gsx$name']['$t']}</h3>`;
              out += `<img src="${data[i]['gsx$image']['$t']}" alt="">`;
              out += `<p class="price">Цена: ${data[i]['gsx$price']['$t']}</p>`;
+             out += `<button name="add_to_cart" data="${data[i]['gsx$article']['$t']}" >Купить</button>`;
              out += `</div>`;
         }
         document.querySelector('.shop_field').innerHTML = out;
         // $('.product_field').html(out);
+    }
+    document.onclick = function(e){
+        console.log(e.target.attributes.name.nodeValue,e.target.attributes.data.nodeValue);
     }
 }

@@ -37,3 +37,6 @@ img{
     flex-wrap: wrap;
     justify-content: center;
 }
+.date{
+    color:rgb(122, 74, 167);
+}
